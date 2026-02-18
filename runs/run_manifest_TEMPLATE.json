@@ -1,0 +1,10 @@
+{
+  "run_id": "YYYYMMDD_HHMMSS_<git_sha>_step1",
+  "git_sha": "<git_sha>",
+  "base_seed": 1337,
+  "seed_derivation": "seed = hash(base_seed + ':' + scenario_id)",
+  "scenarios": ["Scenario_0", "Scenario_1", "Scenario_2", "Scenario_3", "Scenario_4", "Scenario_5"],
+  "operator": "<name_or_role>",
+  "timestamp_started": "<ISO8601>",
+  "notes": "Step 1 minimal deterministic core validation"
+}
