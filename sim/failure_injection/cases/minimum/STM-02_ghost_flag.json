@@ -1,0 +1,31 @@
+{
+  "case_id": "STM-02",
+  "suite": "STM",
+  "description": "Ghost flag: DSM_active=false but DSM_expires_at_epoch is set. System must self-correct to valid state.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 10,
+    "initial_vault_balance_per_user": 1000,
+    "initial_pocket_balance_per_user": 100,
+    "initial_buffer_reserve": 1000,
+    "initial_epoch": 2,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": 5
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 50,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 40,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "ADVANCE_EPOCH", "to_epoch": 3 }
+  ],
+  "expected_properties": ["STATE_MACHINE_VALID", "REPLAY_OK"],
+  "expected_classification": {
+    "first_failure_tier": 0,
+    "first_failure_type": "NONE",
+    "note": "Either clear expires_at_epoch when inactive or activate DSM consistently—must not remain contradictory."
+  },
+  "notes": "Rejects inconsistent DSM state representation."
+}
