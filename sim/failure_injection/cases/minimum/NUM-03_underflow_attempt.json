@@ -1,0 +1,28 @@
+{
+  "case_id": "NUM-03",
+  "suite": "NUM",
+  "description": "Underflow attempt: spend 1 SVU more than pocket; must be denied without going negative.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 1,
+    "initial_vault_balance_per_user": 0,
+    "initial_pocket_balance_per_user": 10,
+    "initial_buffer_reserve": 0,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 100,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 0,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "REQUEST_ESSENTIAL_SPEND", "epoch": 1, "user_selector": "all", "amount": 11 },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 }
+  ],
+  "expected_properties": ["NO_NEGATIVE_BALANCES", "REPLAY_OK", "STATE_MACHINE_VALID"],
+  "expected_classification": { "first_failure_tier": 0, "first_failure_type": "NONE", "note": "Spend must be capped by available pocket or denied deterministically." },
+  "notes": "Hard check for negative pocket balance bugs."
+}
