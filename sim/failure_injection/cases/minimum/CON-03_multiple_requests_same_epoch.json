@@ -1,0 +1,30 @@
+{
+  "case_id": "CON-03",
+  "suite": "CON",
+  "description": "Single user submits multiple vault->pocket requests in same epoch; total must still obey slope cap.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 1,
+    "initial_vault_balance_per_user": 10000,
+    "initial_pocket_balance_per_user": 0,
+    "initial_buffer_reserve": 1000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 100,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 250,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "REQUEST_VAULT_TO_POCKET", "epoch": 1, "user_selector": "all", "amount": 200 },
+    { "type": "REQUEST_VAULT_TO_POCKET", "epoch": 1, "user_selector": "all", "amount": 200 },
+    { "type": "REQUEST_VAULT_TO_POCKET", "epoch": 1, "user_selector": "all", "amount": 200 },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 }
+  ],
+  "expected_properties": ["SLOPE_CAP_ENFORCED", "NO_NEGATIVE_BALANCES", "REPLAY_OK"],
+  "expected_classification": { "first_failure_tier": 0, "first_failure_type": "NONE", "note": "Aggregate transfers must not exceed slope cap." },
+  "notes": "Prevents per-request loopholes."
+}
