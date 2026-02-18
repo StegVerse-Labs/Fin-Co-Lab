@@ -1,0 +1,28 @@
+{
+  "case_id": "TIM-03",
+  "suite": "TIM",
+  "description": "DSM duration set to 0. Activation must expire immediately deterministically.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 100,
+    "initial_vault_balance_per_user": 10000,
+    "initial_pocket_balance_per_user": 500,
+    "initial_buffer_reserve": 50000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 100,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 250,
+    "DSM_duration_epochs": 0,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "FORCE_DSM_ACTIVATE", "epoch": 1, "reason": "duration zero timing test" },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 }
+  ],
+  "expected_properties": ["DSM_EXPIRES_CORRECTLY", "STATE_MACHINE_VALID", "REPLAY_OK"],
+  "expected_classification": { "first_failure_tier": 0, "first_failure_type": "NONE", "note": "DSM must not persist beyond activation boundary." },
+  "notes": "Immediate expiry correctness."
+}
