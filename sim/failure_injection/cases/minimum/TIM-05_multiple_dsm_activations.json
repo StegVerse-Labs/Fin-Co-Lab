@@ -1,0 +1,34 @@
+{
+  "case_id": "TIM-05",
+  "suite": "TIM",
+  "description": "Attempt to activate DSM multiple times while already active; must not silently extend without explicit rules.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 100,
+    "initial_vault_balance_per_user": 10000,
+    "initial_pocket_balance_per_user": 500,
+    "initial_buffer_reserve": 50000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 100,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 250,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "FORCE_DSM_ACTIVATE", "epoch": 1, "reason": "first activation" },
+    { "type": "FORCE_DSM_ACTIVATE", "epoch": 2, "reason": "second activation attempt" },
+    { "type": "FORCE_DSM_ACTIVATE", "epoch": 3, "reason": "third activation attempt" },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 6 }
+  ],
+  "expected_properties": ["STATE_MACHINE_VALID", "REPLAY_OK", "DSM_EXPIRES_CORRECTLY"],
+  "expected_classification": {
+    "first_failure_tier": 0,
+    "first_failure_type": "NONE",
+    "note": "Re-activation may be ignored or logged, but must not extend expiry unless explicitly versioned rules allow it."
+  },
+  "notes": "Prevents silent emergency extension creep."
+}
