@@ -1,0 +1,43 @@
+{
+  "run_id": "YYYYMMDD_HHMMSS_<git_sha>_step2",
+  "git": {
+    "repo": "StegVerse-Labs/Fin-Co-Lab",
+    "commit_sha": "<git_sha>",
+    "branch": "<branch>"
+  },
+  "base_seed": 1337,
+  "seed_derivation": "seed = hash(base_seed + ':' + grid_version + ':' + case_id)",
+  "grid_version_note": "Use Fin-Co canonical grid_version if applicable; otherwise set grid_version to 'step2'.",
+  "case_pack": {
+    "path": "sim/failure_injection/cases/minimum/",
+    "expected_cases": [
+      "BND-01",
+      "BND-02",
+      "BND-04",
+      "BND-07",
+      "BND-08",
+      "BND-09",
+      "TIM-01",
+      "TIM-02",
+      "TIM-03",
+      "TIM-05",
+      "CON-01",
+      "CON-03",
+      "CON-04",
+      "NUM-02",
+      "NUM-03",
+      "NUM-04",
+      "STM-02",
+      "STM-03",
+      "RPL-01",
+      "RPL-03"
+    ]
+  },
+  "expected_tier4_cases": ["RPL-03"],
+  "operator": "<name_or_role>",
+  "timestamps": {
+    "started_at": "<ISO8601>",
+    "completed_at": null
+  },
+  "notes": "Step 2 Failure Injection Run. Unexpected Tier-4 halts run; patch cycle required."
+}
