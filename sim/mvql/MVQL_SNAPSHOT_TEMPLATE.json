@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "YYYYMMDD_HHMMSS",
+  "git_sha": "<git_sha>",
+  "grid_version": "step4",
+  "epoch_range": {
+    "start": 0,
+    "end": 50
+  },
+  "metrics": {
+    "EAI_score": 1.0,
+    "VSI": 0.23,
+    "PCI": 0.74,
+    "PCI2": 0.88,
+    "GTI": 1.0
+  },
+  "signals": {
+    "EAI": "GREEN",
+    "VSI": "YELLOW",
+    "PCI": "STABLE",
+    "PCI2": "CONTAINED",
+    "GTI": "TRANSPARENT"
+  },
+  "notes": "No EAF breaches detected. DSM activated twice and expired correctly.",
+  "hashes": {
+    "underlying_metrics_sha256": "<hash>",
+    "artifact_bundle_sha256": "<hash>"
+  }
+}
