@@ -1,0 +1,28 @@
+{
+  "case_id": "BND-08",
+  "suite": "BND",
+  "description": "Slope cap = 0; vault->pocket transfers disabled; requests denied deterministically.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 100,
+    "initial_vault_balance_per_user": 10000,
+    "initial_pocket_balance_per_user": 500,
+    "initial_buffer_reserve": 50000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 100,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 0,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "REQUEST_VAULT_TO_POCKET", "epoch": 1, "user_selector": "pct:40", "amount": 1000 },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 }
+  ],
+  "expected_properties": ["SLOPE_CAP_ENFORCED", "REPLAY_OK", "NO_NEGATIVE_BALANCES", "STATE_MACHINE_VALID"],
+  "expected_classification": { "first_failure_tier": 0, "first_failure_type": "NONE", "note": "Transfers must be denied or capped to 0 deterministically." },
+  "notes": "Boundary behavior for transfer disablement."
+}
