@@ -1,0 +1,33 @@
+{
+  "case_id": "RPL-03",
+  "suite": "RPL",
+  "description": "Corrupt one artifact after run; verification must detect mismatch deterministically.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 10,
+    "initial_vault_balance_per_user": 1000,
+    "initial_pocket_balance_per_user": 100,
+    "initial_buffer_reserve": 1000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 25,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 20,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    { "type": "REQUEST_ESSENTIAL_SPEND", "epoch": 1, "user_selector": "all", "amount": 10 },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 },
+    { "type": "CORRUPT_ARTIFACT", "artifact_path": "det_trace.jsonl", "mode": "truncate" }
+  ],
+  "expected_properties": ["ARTIFACT_HASH_OK"],
+  "expected_classification": {
+    "first_failure_tier": 4,
+    "first_failure_type": "EVIDENCE_CORRUPTION_DETECTED",
+    "note": "The runner should flag corruption as a hard failure of evidence integrity (Tier-4 for certification artifacts)."
+  },
+  "notes": "Evidence integrity is mandatory; corruption detection must be reliable."
+}
