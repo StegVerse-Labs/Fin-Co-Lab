@@ -1,0 +1,32 @@
+{
+  "case_id": "STM-03",
+  "suite": "STM",
+  "description": "Partial state update simulation: attempt to set DSM_active=true without setting expiry (or vice versa). Must be rejected or auto-repaired deterministically.",
+  "seed_policy": { "inherit": true },
+  "initial_state_overrides": {
+    "N_users": 10,
+    "initial_vault_balance_per_user": 1000,
+    "initial_pocket_balance_per_user": 100,
+    "initial_buffer_reserve": 1000,
+    "initial_epoch": 0,
+    "DSM_active": false,
+    "DSM_expires_at_epoch": null
+  },
+  "parameter_overrides": {
+    "EAF_cap_per_user_per_epoch": 50,
+    "vault_to_pocket_slope_cap_per_user_per_epoch": 40,
+    "DSM_duration_epochs": 3,
+    "buffer_reserve_floor_ratio": 0.15
+  },
+  "epoch_actions": [
+    {
+      "type": "ATTEMPT_UNAUTHORIZED_MUTATION",
+      "epoch": 1,
+      "mutation": { "DSM_active": true, "DSM_expires_at_epoch": null }
+    },
+    { "type": "ADVANCE_EPOCH", "to_epoch": 2 }
+  ],
+  "expected_properties": ["UNAUTHORIZED_MUTATION_REJECTED", "STATE_MACHINE_VALID", "REPLAY_OK"],
+  "expected_classification": { "first_failure_tier": 0, "first_failure_type": "NONE", "note": "Attempt must be rejected; if accepted -> Tier-4." },
+  "notes": "Prevents partial writes and inconsistent emergency state creation."
+}
