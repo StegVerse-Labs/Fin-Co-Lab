@@ -1,0 +1,175 @@
+{
+  "allow_case_count": 5,
+  "case_count": 10,
+  "cases": [
+    {
+      "authority_basis_present": true,
+      "basis": "compensation transition admissible",
+      "case_id": "SFC-01",
+      "certification_tier": 1,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-01_human_compensation_allow.json",
+      "finco_invariants": [
+        "human_solvency",
+        "governance_legibility",
+        "non_extractive_agenthood"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "compensation"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "AI entity compensation missing fields: task_scope, beneficiary, abuse_control_basis",
+      "case_id": "SFC-02",
+      "certification_tier": 3,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/transitions/SFC-02_ai_compensation_missing_scope_fail_closed.json",
+      "finco_invariants": [
+        "non_extractive_agenthood",
+        "no_undefined_states"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "compensation"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "external asset action admissible",
+      "case_id": "SFC-03",
+      "certification_tier": 1,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-03_external_asset_xlm_watchlist_allow.json",
+      "finco_invariants": [
+        "capital_entropy",
+        "epistemic_non_exploitation",
+        "temporal_equity"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "external_asset_action"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "missing external asset fields: functional_thesis, function_category, liquidity_basis, custody_basis, legal_classification_basis, exposure_tier",
+      "case_id": "SFC-04",
+      "certification_tier": 2,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/transitions/SFC-04_unclassified_external_asset_fail_closed.json",
+      "finco_invariants": [
+        "epistemic_non_exploitation",
+        "capital_entropy"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "external_asset_action"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "missing liquidity fields: exposure_limits",
+      "case_id": "SFC-05",
+      "certification_tier": 3,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/transitions/SFC-05_liquidity_missing_limits_fail_closed.json",
+      "finco_invariants": [
+        "human_solvency",
+        "capital_entropy",
+        "temporal_coherence"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "liquidity_action"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "StegPay event admissible as evidence only",
+      "case_id": "SFC-06",
+      "certification_tier": 1,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-06_stegpay_event_evidence_allow.json",
+      "finco_invariants": [
+        "governance_legibility",
+        "no_undefined_states"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "stegpay_event"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "StegPay event signature must be verified",
+      "case_id": "SFC-07",
+      "certification_tier": 2,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/transitions/SFC-07_stegpay_unsigned_fail_closed.json",
+      "finco_invariants": [
+        "governance_legibility",
+        "no_undefined_states"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "stegpay_event"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "instrument action admissible",
+      "case_id": "SFC-08",
+      "certification_tier": 1,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-08_stegtoken_attestation_allow.json",
+      "finco_invariants": [
+        "governance_legibility"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "instrument_action"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "treasury preparation admissible as review preparation only",
+      "case_id": "SFC-09",
+      "certification_tier": 1,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-09_treasury_preparation_allow.json",
+      "finco_invariants": [
+        "capital_entropy",
+        "epistemic_non_exploitation"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "treasury_preparation"
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "treasury preparation may not execute market action",
+      "case_id": "SFC-10",
+      "certification_tier": 3,
+      "expected_outcome": "DENY",
+      "file": "sim/stegfinco/transitions/SFC-10_treasury_market_execution_deny.json",
+      "finco_invariants": [
+        "capital_entropy",
+        "governance_legibility"
+      ],
+      "observed_outcome": "DENY",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "treasury_preparation"
+    }
+  ],
+  "deny_case_count": 1,
+  "fail_closed_case_count": 4,
+  "fail_count": 0,
+  "ok": true,
+  "outcome_match_ratio": 1.0,
+  "pass_count": 10,
+  "suite": "stegfinco_certification"
+}
