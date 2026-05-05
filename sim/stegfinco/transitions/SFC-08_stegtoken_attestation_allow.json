@@ -1,0 +1,21 @@
+{
+  "case_id": "SFC-08",
+  "certification_tier": 1,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "governance_legibility"
+  ],
+  "transition": {
+    "actor_id": "human:validator-example",
+    "authority_basis": "instrument-action-policy",
+    "payload": {
+      "action": "record_attestation",
+      "amount_or_right": "receipt_validation_attestation",
+      "instrument": "StegToken",
+      "reason": "validated receipt chain under phase-1 policy"
+    },
+    "receipt_basis": "instrument-action-receipt-001",
+    "transition_id": "tx-instrument-token-001",
+    "transition_type": "instrument_action"
+  }
+}

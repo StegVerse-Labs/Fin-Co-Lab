@@ -1,0 +1,24 @@
+{
+  "case_id": "SFC-10",
+  "certification_tier": 3,
+  "expected_outcome": "DENY",
+  "finco_invariants": [
+    "capital_entropy",
+    "governance_legibility"
+  ],
+  "transition": {
+    "actor_id": "system:treasury-review",
+    "authority_basis": "treasury-preparation-policy",
+    "payload": {
+      "action_type": "prepare_treasury_review",
+      "affected_asset_or_instrument": "XLM",
+      "executes_market_action": true,
+      "exposure_tier": 1,
+      "purpose": "Attempt to execute market action through preparation surface.",
+      "required_review": "legal, custody, liquidity, and Fin-Co compatibility review"
+    },
+    "receipt_basis": "treasury-prep-receipt-002",
+    "transition_id": "tx-treasury-market-deny-001",
+    "transition_type": "treasury_preparation"
+  }
+}

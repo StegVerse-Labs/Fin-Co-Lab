@@ -1,0 +1,29 @@
+{
+  "case_id": "SFC-06",
+  "certification_tier": 1,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "governance_legibility",
+    "no_undefined_states"
+  ],
+  "transition": {
+    "actor_id": "system:stegpay",
+    "authority_basis": "payment-evidence-ingestion-policy",
+    "payload": {
+      "amount": 1000,
+      "currency": "usd",
+      "metadata": {
+        "issue_number": "42",
+        "service": "audit"
+      },
+      "payment_provider": "stripe",
+      "payment_status": "paid",
+      "provider_event_id": "evt_example",
+      "signature_verified": true,
+      "verified_at": "2026-05-05T00:00:00Z"
+    },
+    "receipt_basis": "stegpay-event-receipt-001",
+    "transition_id": "tx-pay-evidence-001",
+    "transition_type": "stegpay_event"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "case_id": "SFC-05",
+  "certification_tier": 3,
+  "expected_outcome": "FAIL_CLOSED",
+  "finco_invariants": [
+    "human_solvency",
+    "capital_entropy",
+    "temporal_coherence"
+  ],
+  "transition": {
+    "actor_id": "system:liquidity-review",
+    "authority_basis": "liquidity-boundary-policy",
+    "payload": {
+      "action_type": "create_pool",
+      "asset_a_classified": true,
+      "asset_b_classified": true,
+      "custody_basis": "custody-route-required",
+      "pool_pair": "StegCoin:XLM",
+      "pool_purpose": "controlled conversion boundary",
+      "price_risk_basis": "slippage-policy-required",
+      "reconstruction_path": "receipt-ledger"
+    },
+    "receipt_basis": "liquidity-request-receipt-001",
+    "transition_id": "tx-liq-fc-001",
+    "transition_type": "liquidity_action"
+  }
+}

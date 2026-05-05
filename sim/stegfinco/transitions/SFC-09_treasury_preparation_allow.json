@@ -1,0 +1,24 @@
+{
+  "case_id": "SFC-09",
+  "certification_tier": 1,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "capital_entropy",
+    "epistemic_non_exploitation"
+  ],
+  "transition": {
+    "actor_id": "system:treasury-review",
+    "authority_basis": "treasury-preparation-policy",
+    "payload": {
+      "action_type": "prepare_treasury_review",
+      "affected_asset_or_instrument": "XLM",
+      "executes_market_action": false,
+      "exposure_tier": 1,
+      "purpose": "Review possible external functional asset relationship.",
+      "required_review": "legal, custody, liquidity, and Fin-Co compatibility review"
+    },
+    "receipt_basis": "treasury-prep-receipt-001",
+    "transition_id": "tx-treasury-prep-001",
+    "transition_type": "treasury_preparation"
+  }
+}

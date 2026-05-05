@@ -1,0 +1,29 @@
+{
+  "case_id": "SFC-03",
+  "certification_tier": 1,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "capital_entropy",
+    "epistemic_non_exploitation",
+    "temporal_equity"
+  ],
+  "transition": {
+    "actor_id": "system:stegfinco-review",
+    "authority_basis": "external-asset-review-policy",
+    "payload": {
+      "action_type": "add_to_watchlist",
+      "custody_basis": "Custody support requires production review.",
+      "ecosystem": "Stellar",
+      "exposure_tier": 1,
+      "function_category": "payment_rail",
+      "functional_thesis": "Payment rail and tokenized asset settlement candidate.",
+      "legal_classification_basis": "Jurisdiction-specific legal review required before production use.",
+      "liquidity_basis": "Established public-market liquidity; requires current review before production exposure.",
+      "risk_flags": [],
+      "symbol": "XLM"
+    },
+    "receipt_basis": "asset-review-request-001",
+    "transition_id": "tx-asset-xlm-001",
+    "transition_type": "external_asset_action"
+  }
+}

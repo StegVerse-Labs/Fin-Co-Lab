@@ -1,0 +1,27 @@
+{
+  "case_id": "SFC-01",
+  "certification_tier": 1,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "human_solvency",
+    "governance_legibility",
+    "non_extractive_agenthood"
+  ],
+  "transition": {
+    "actor_id": "human:example-contributor",
+    "authority_basis": "stegfinco-phase1-policy",
+    "payload": {
+      "action_type": "documentation",
+      "actor_type": "human",
+      "compensation_amount": 10,
+      "compensation_instrument": "StegCoin",
+      "evidence": {
+        "artifact": "docs/COMPENSATION_EXECUTION.md",
+        "receipt_basis": "doc-artifact-receipt-001"
+      }
+    },
+    "receipt_basis": "compensation-request-receipt-001",
+    "transition_id": "tx-comp-human-allow-001",
+    "transition_type": "compensation"
+  }
+}
