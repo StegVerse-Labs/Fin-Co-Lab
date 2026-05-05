@@ -1,0 +1,61 @@
+name: StegFinCo Certification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "cert/**"
+      - "runs/**"
+      - "sim/**"
+      - "tools/stegfinco_cert_runner.py"
+      - "tests/test_stegfinco_cert_runner.py"
+      - "github/workflows/stegfinco-cert.yml"
+      - ".github/workflows/stegfinco-cert.yml"
+  pull_request:
+    paths:
+      - "cert/**"
+      - "runs/**"
+      - "sim/**"
+      - "tools/stegfinco_cert_runner.py"
+      - "tests/test_stegfinco_cert_runner.py"
+      - "github/workflows/stegfinco-cert.yml"
+      - ".github/workflows/stegfinco-cert.yml"
+
+jobs:
+  certify-stegfinco:
+    name: Certify StegFinCo fixtures
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run StegFinCo certification runner
+        run: |
+          python tools/stegfinco_cert_runner.py --output runs/stegfinco_cert_report.json
+
+      - name: Validate certification report
+        run: |
+          python tools/validate_stegfinco_cert_report.py runs/stegfinco_cert_report.json
+
+      - name: Run certification tests
+        run: |
+          python -m pytest tests/test_stegfinco_cert_runner.py tests/test_stegfinco_cert_report_validation.py
+
+      - name: Upload certification report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stegfinco-cert-report
+          path: runs/stegfinco_cert_report.json
+          if-no-files-found: error
