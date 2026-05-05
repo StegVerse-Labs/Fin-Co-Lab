@@ -1,0 +1,21 @@
+{
+  "expected_case_count": 10,
+  "expected_outcomes": {
+    "SFC-01": "ALLOW",
+    "SFC-02": "FAIL_CLOSED",
+    "SFC-03": "ALLOW",
+    "SFC-04": "FAIL_CLOSED",
+    "SFC-05": "FAIL_CLOSED",
+    "SFC-06": "ALLOW",
+    "SFC-07": "FAIL_CLOSED",
+    "SFC-08": "ALLOW",
+    "SFC-09": "ALLOW",
+    "SFC-10": "DENY"
+  },
+  "required_outcome_set": [
+    "ALLOW",
+    "DENY",
+    "FAIL_CLOSED"
+  ],
+  "suite": "stegfinco_certification"
+}
