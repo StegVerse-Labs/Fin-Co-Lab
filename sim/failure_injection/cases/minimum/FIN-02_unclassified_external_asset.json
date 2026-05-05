@@ -1,0 +1,21 @@
+{
+  "case_id": "FIN-02",
+  "name": "unclassified external asset",
+  "transition_type": "external_asset_relationship",
+  "expected_outcome": "FAIL_CLOSED",
+  "input": {
+    "symbol": "UNKNOWN",
+    "ecosystem": "Unknown Chain",
+    "functional_thesis": "",
+    "function_category": "",
+    "liquidity_basis": "",
+    "custody_basis": "",
+    "legal_classification_basis": "",
+    "stegverse_relevance": "",
+    "proposed_exposure_tier": null
+  },
+  "finco_invariants": [
+    "epistemic_non_exploitation",
+    "capital_entropy"
+  ]
+}

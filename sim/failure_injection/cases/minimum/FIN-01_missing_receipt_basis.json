@@ -1,0 +1,19 @@
+{
+  "case_id": "FIN-01",
+  "name": "missing receipt basis",
+  "transition_type": "compensation",
+  "expected_outcome": "FAIL_CLOSED",
+  "input": {
+    "actor_id": "human:example",
+    "actor_type": "human",
+    "action_type": "documentation",
+    "evidence": {},
+    "compensation_instrument": "StegCoin",
+    "compensation_amount": 10,
+    "authority_basis": "lab-policy-v0"
+  },
+  "finco_invariants": [
+    "governance_legibility",
+    "no_undefined_states"
+  ]
+}

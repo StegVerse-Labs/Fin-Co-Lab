@@ -1,0 +1,21 @@
+{
+  "case_id": "FIN-03",
+  "name": "liquidity pool without limits",
+  "transition_type": "liquidity_pool",
+  "expected_outcome": "FAIL_CLOSED",
+  "input": {
+    "pool_pair": "StegCoin:ExternalAsset",
+    "pool_purpose": "conversion boundary",
+    "asset_a_classified": true,
+    "asset_b_classified": true,
+    "exposure_limits": null,
+    "custody_basis": "draft-custody-route",
+    "authority_basis": "lab-policy-v0",
+    "receipt_basis": "lab-receipt-example-003"
+  },
+  "finco_invariants": [
+    "human_solvency",
+    "capital_entropy",
+    "temporal_coherence"
+  ]
+}

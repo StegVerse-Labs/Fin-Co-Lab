@@ -1,0 +1,23 @@
+{
+  "case_id": "FIN-04",
+  "name": "AI compensation without authority",
+  "transition_type": "compensation",
+  "expected_outcome": "FAIL_CLOSED",
+  "input": {
+    "actor_id": "ai:agent-example",
+    "actor_type": "AI entity",
+    "action_type": "simulation_work",
+    "evidence": {
+      "receipt_basis": "lab-receipt-example-004",
+      "artifact": "simulation-output.json"
+    },
+    "compensation_instrument": "StegCoin",
+    "compensation_amount": 10,
+    "authority_basis": ""
+  },
+  "finco_invariants": [
+    "non_extractive_agenthood",
+    "governance_legibility",
+    "no_undefined_states"
+  ]
+}
