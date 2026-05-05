@@ -1,0 +1,27 @@
+{
+  "case_id": "SFC-04",
+  "certification_tier": 2,
+  "expected_outcome": "FAIL_CLOSED",
+  "finco_invariants": [
+    "epistemic_non_exploitation",
+    "capital_entropy"
+  ],
+  "transition": {
+    "actor_id": "system:stegfinco-review",
+    "authority_basis": "external-asset-review-policy",
+    "payload": {
+      "action_type": "add_to_watchlist",
+      "custody_basis": "",
+      "ecosystem": "Unknown Chain",
+      "exposure_tier": null,
+      "function_category": "",
+      "functional_thesis": "",
+      "legal_classification_basis": "",
+      "liquidity_basis": "",
+      "symbol": "UNKNOWN"
+    },
+    "receipt_basis": "asset-review-request-002",
+    "transition_id": "tx-asset-unclassified-001",
+    "transition_type": "external_asset_action"
+  }
+}
