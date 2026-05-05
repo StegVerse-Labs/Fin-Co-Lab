@@ -1,0 +1,28 @@
+{
+  "allow_case_count": 0,
+  "case_count": 0,
+  "cases": [
+    {
+      "authority_basis_present": true,
+      "basis": "",
+      "case_id": "SFC-00",
+      "certification_tier": 0,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/transitions/SFC-00_example.json",
+      "finco_invariants": [
+        "governance_legibility"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true,
+      "transition_type": "example"
+    }
+  ],
+  "deny_case_count": 0,
+  "fail_closed_case_count": 0,
+  "fail_count": 0,
+  "ok": true,
+  "outcome_match_ratio": 1.0,
+  "pass_count": 0,
+  "suite": "stegfinco_certification"
+}
