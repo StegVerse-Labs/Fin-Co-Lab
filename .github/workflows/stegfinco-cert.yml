@@ -10,7 +10,9 @@ on:
       - "runs/**"
       - "sim/**"
       - "tools/stegfinco_cert_runner.py"
+      - "tools/validate_stegfinco_cert_report.py"
       - "tests/test_stegfinco_cert_runner.py"
+      - "tests/test_stegfinco_cert_report_validation.py"
       - "github/workflows/stegfinco-cert.yml"
       - ".github/workflows/stegfinco-cert.yml"
   pull_request:
@@ -19,7 +21,9 @@ on:
       - "runs/**"
       - "sim/**"
       - "tools/stegfinco_cert_runner.py"
+      - "tools/validate_stegfinco_cert_report.py"
       - "tests/test_stegfinco_cert_runner.py"
+      - "tests/test_stegfinco_cert_report_validation.py"
       - "github/workflows/stegfinco-cert.yml"
       - ".github/workflows/stegfinco-cert.yml"
 
@@ -40,6 +44,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install test dependency
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
 
       - name: Run StegFinCo certification runner
         run: |
