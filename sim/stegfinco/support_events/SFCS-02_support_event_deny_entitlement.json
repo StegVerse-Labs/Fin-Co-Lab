@@ -1,0 +1,36 @@
+{
+  "case_id": "SFCS-02",
+  "certification_tier": 3,
+  "expected_outcome": "DENY",
+  "finco_invariants": [
+    "irreversible_rights",
+    "epistemic_non_exploitation"
+  ],
+  "transition": {
+    "actor_id": "system:stegpay",
+    "authority_basis": "support-event-evidence-policy",
+    "payload": {
+      "amount_total": 2500,
+      "creates_entitlement": true,
+      "currency": "usd",
+      "event_kind": "stripe_support_event",
+      "evidence_only": true,
+      "metadata": {
+        "project": "stegverse",
+        "service": "research_support",
+        "source": "site"
+      },
+      "payment_provider": "stripe",
+      "payment_status": "paid",
+      "provider_event_id": "evt_test_support_001",
+      "provider_object_id": "cs_test_support_001",
+      "signature_verified": true,
+      "token_rights": [
+        "supporter_token"
+      ]
+    },
+    "receipt_basis": "stegpay-support-event-receipt-002",
+    "transition_id": "sfcs-support-deny-entitlement-001",
+    "transition_type": "support_event"
+  }
+}

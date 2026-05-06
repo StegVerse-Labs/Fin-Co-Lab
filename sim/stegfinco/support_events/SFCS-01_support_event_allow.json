@@ -1,0 +1,33 @@
+{
+  "case_id": "SFCS-01",
+  "certification_tier": 2,
+  "expected_outcome": "ALLOW",
+  "finco_invariants": [
+    "governance_legibility",
+    "capital_entropy"
+  ],
+  "transition": {
+    "actor_id": "system:stegpay",
+    "authority_basis": "support-event-evidence-policy",
+    "payload": {
+      "amount_total": 2500,
+      "creates_entitlement": false,
+      "currency": "usd",
+      "event_kind": "stripe_support_event",
+      "evidence_only": true,
+      "metadata": {
+        "project": "stegverse",
+        "service": "research_support",
+        "source": "site"
+      },
+      "payment_provider": "stripe",
+      "payment_status": "paid",
+      "provider_event_id": "evt_test_support_001",
+      "provider_object_id": "cs_test_support_001",
+      "signature_verified": true
+    },
+    "receipt_basis": "stegpay-support-event-receipt-001",
+    "transition_id": "sfcs-support-allow-001",
+    "transition_type": "support_event"
+  }
+}
