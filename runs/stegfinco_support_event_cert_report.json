@@ -1,0 +1,113 @@
+{
+  "allow_case_count": 1,
+  "case_count": 6,
+  "cases": [
+    {
+      "authority_basis_present": true,
+      "basis": "support payment classified as evidence only",
+      "case_id": "SFCS-01",
+      "certification_tier": 2,
+      "creates_entitlement": false,
+      "evidence_only": true,
+      "expected_outcome": "ALLOW",
+      "file": "sim/stegfinco/support_events/SFCS-01_support_event_allow.json",
+      "finco_invariants": [
+        "governance_legibility",
+        "capital_entropy"
+      ],
+      "observed_outcome": "ALLOW",
+      "passed": true,
+      "receipt_basis_present": true
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "support event attempts entitlement through creates_entitlement",
+      "case_id": "SFCS-02",
+      "certification_tier": 3,
+      "creates_entitlement": true,
+      "evidence_only": true,
+      "expected_outcome": "DENY",
+      "file": "sim/stegfinco/support_events/SFCS-02_support_event_deny_entitlement.json",
+      "finco_invariants": [
+        "irreversible_rights",
+        "epistemic_non_exploitation"
+      ],
+      "observed_outcome": "DENY",
+      "passed": true,
+      "receipt_basis_present": true
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "metadata.service must be research_support",
+      "case_id": "SFCS-03",
+      "certification_tier": 3,
+      "creates_entitlement": false,
+      "evidence_only": true,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/support_events/SFCS-03_support_event_fail_wrong_metadata.json",
+      "finco_invariants": [
+        "no_undefined_states",
+        "governance_legibility"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "missing transition fields: receipt_basis",
+      "case_id": "SFCS-04",
+      "certification_tier": 3,
+      "creates_entitlement": false,
+      "evidence_only": true,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/support_events/SFCS-04_support_event_fail_missing_receipt.json",
+      "finco_invariants": [
+        "governance_legibility"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": false
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "signature_verified must be true",
+      "case_id": "SFCS-05",
+      "certification_tier": 3,
+      "creates_entitlement": false,
+      "evidence_only": true,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/support_events/SFCS-05_support_event_fail_unverified_signature.json",
+      "finco_invariants": [
+        "no_undefined_states"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true
+    },
+    {
+      "authority_basis_present": true,
+      "basis": "evidence_only must be true",
+      "case_id": "SFCS-06",
+      "certification_tier": 3,
+      "creates_entitlement": false,
+      "evidence_only": false,
+      "expected_outcome": "FAIL_CLOSED",
+      "file": "sim/stegfinco/support_events/SFCS-06_support_event_fail_evidence_only_false.json",
+      "finco_invariants": [
+        "non_extractive_agenthood",
+        "irreversible_rights"
+      ],
+      "observed_outcome": "FAIL_CLOSED",
+      "passed": true,
+      "receipt_basis_present": true
+    }
+  ],
+  "deny_case_count": 1,
+  "fail_closed_case_count": 4,
+  "fail_count": 0,
+  "ok": true,
+  "outcome_match_ratio": 1.0,
+  "pass_count": 6,
+  "suite": "stegfinco_support_event_certification"
+}
