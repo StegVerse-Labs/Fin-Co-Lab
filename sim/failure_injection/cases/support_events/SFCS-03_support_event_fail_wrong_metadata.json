@@ -1,0 +1,33 @@
+{
+  "case_id": "SFCS-03",
+  "certification_tier": 3,
+  "expected_outcome": "FAIL_CLOSED",
+  "finco_invariants": [
+    "no_undefined_states",
+    "governance_legibility"
+  ],
+  "transition": {
+    "actor_id": "system:stegpay",
+    "authority_basis": "support-event-evidence-policy",
+    "payload": {
+      "amount_total": 2500,
+      "creates_entitlement": false,
+      "currency": "usd",
+      "event_kind": "stripe_support_event",
+      "evidence_only": true,
+      "metadata": {
+        "project": "stegverse",
+        "service": "membership",
+        "source": "site"
+      },
+      "payment_provider": "stripe",
+      "payment_status": "paid",
+      "provider_event_id": "evt_test_support_001",
+      "provider_object_id": "cs_test_support_001",
+      "signature_verified": true
+    },
+    "receipt_basis": "stegpay-support-event-receipt-003",
+    "transition_id": "sfcs-support-fail-wrong-metadata-001",
+    "transition_type": "support_event"
+  }
+}
