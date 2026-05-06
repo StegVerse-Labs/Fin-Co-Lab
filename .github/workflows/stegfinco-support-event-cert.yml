@@ -1,0 +1,91 @@
+name: StegFinCo Support Event Certification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "cert/STEGFINCO_SUPPORT_EVENT_CERT_MAPPING.md"
+      - "runs/STEGFINCO_SUPPORT_EVENT_CERT_RUNBOOK.md"
+      - "sim/stegfinco/support_events/**"
+      - "sim/stegfinco/support_expected/**"
+      - "sim/failure_injection/cases/support_events/**"
+      - "sim/scenarios/Scenario_16_to_21_stegfinco_support_event_certification.md"
+      - "sim/metrics/stegfinco_support_event_cert_metrics_spec.md"
+      - "sim/mvql/STEGFINCO_SUPPORT_EVENT_MVQL_FORMULAS.md"
+      - "tools/stegfinco_support_event_cert_runner.py"
+      - "tests/test_stegfinco_support_event_cert_runner.py"
+      - "github/workflows/stegfinco-support-event-cert.yml"
+      - ".github/workflows/stegfinco-support-event-cert.yml"
+  pull_request:
+    paths:
+      - "cert/STEGFINCO_SUPPORT_EVENT_CERT_MAPPING.md"
+      - "runs/STEGFINCO_SUPPORT_EVENT_CERT_RUNBOOK.md"
+      - "sim/stegfinco/support_events/**"
+      - "sim/stegfinco/support_expected/**"
+      - "sim/failure_injection/cases/support_events/**"
+      - "sim/scenarios/Scenario_16_to_21_stegfinco_support_event_certification.md"
+      - "sim/metrics/stegfinco_support_event_cert_metrics_spec.md"
+      - "sim/mvql/STEGFINCO_SUPPORT_EVENT_MVQL_FORMULAS.md"
+      - "tools/stegfinco_support_event_cert_runner.py"
+      - "tests/test_stegfinco_support_event_cert_runner.py"
+      - "github/workflows/stegfinco-support-event-cert.yml"
+      - ".github/workflows/stegfinco-support-event-cert.yml"
+
+jobs:
+  certify-support-events:
+    name: Certify support-payment evidence boundary
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependency
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
+      - name: Run support-event certification runner
+        run: |
+          python tools/stegfinco_support_event_cert_runner.py --output runs/stegfinco_support_event_cert_report.json
+
+      - name: Run support-event certification tests
+        run: |
+          python -m pytest tests/test_stegfinco_support_event_cert_runner.py
+
+      - name: Write summary
+        if: always()
+        run: |
+          echo "## StegFinCo Support Event Certification" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Boundary:** support payment is evidence, not authority" >> "$GITHUB_STEP_SUMMARY"
+          echo "**ALLOW:** verified support evidence only" >> "$GITHUB_STEP_SUMMARY"
+          echo "**DENY:** entitlement attempts" >> "$GITHUB_STEP_SUMMARY"
+          echo "**FAIL_CLOSED:** missing metadata, receipt basis, signature verification, or evidence-only flag" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ -f runs/stegfinco_support_event_cert_report.json ]; then
+            echo "### Certification report" >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat runs/stegfinco_support_event_cert_report.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload support-event certification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stegfinco-support-event-cert-report
+          path: runs/stegfinco_support_event_cert_report.json
+          if-no-files-found: warn
