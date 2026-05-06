@@ -1,0 +1,17 @@
+{
+  "expected_case_count": 6,
+  "expected_outcomes": {
+    "SFCS-01": "ALLOW",
+    "SFCS-02": "DENY",
+    "SFCS-03": "FAIL_CLOSED",
+    "SFCS-04": "FAIL_CLOSED",
+    "SFCS-05": "FAIL_CLOSED",
+    "SFCS-06": "FAIL_CLOSED"
+  },
+  "required_outcome_set": [
+    "ALLOW",
+    "DENY",
+    "FAIL_CLOSED"
+  ],
+  "suite": "stegfinco_support_event_certification"
+}
